@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', changelog: false, credentialsId: '15fb69c3-3460-4d51-bd07-2b0545fa5151', poll: false, url: 'https://github.com/RAJAMMA0808/Shopping-Cart.git'
+                git branch: 'main', changelog: false, credentialsId: '54751a09-0a11-42ed-81de-4568b859cb8b', poll: false, url: 'https://github.com/RAJAMMA0808/Shopping-Cart.git'
             }
         }
         
@@ -48,7 +48,7 @@ pipeline {
         stage('Docker Build & Push') {
             steps {
                 script{
-                    withDockerRegistry(credentialsId: '2fe19d8a-3d12-4b82-ba20-9d22e6bf1672', toolName: 'docker') {
+                    withDockerRegistry(credentialsId: '7f43e420-0f46-4294-bb4c-7945fb74e35c', toolName: 'docker') {
                         
                         sh "docker build -t shopping-cart -f docker/Dockerfile ."
                         sh "docker tag  shopping-cart raji0808/shopping-cart:latest"
@@ -63,9 +63,8 @@ pipeline {
 				     
 					 sh "docker run -d --name-shop-shop -p 8070:8070 raji0808/shopping-cart:latest"
                     }
-				}	
+		}
             }
-		}	 
+	}	 
     }
-        
 }
